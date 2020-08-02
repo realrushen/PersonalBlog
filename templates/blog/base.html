@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Добро пожаловать в мой блог</title>
     {% block css_styles %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
               integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -10,19 +10,26 @@
     {% endblock %}
 </head>
 <body>
+
 {% block header %}
     {% include 'blog/header.html' %}
 {% endblock %}
-<div class="container">
-    {% block title %}
-        <h1 class="mb-4">Title</h1>
-    {% endblock %}
 
+<div class="container">
+    <h1 class="mb-4">
+    {% block title %}
+         Здесь должен быть заголовок
+    {% endblock %}
+    </h1>
     {% block content %}
        Here is missing text
     {% endblock %}
 </div>
-{% block footer %} {% endblock %}
+
+{% block footer %}
+    {% include 'blog/footer.html' %}
+{% endblock %}
+
 {% block scripts %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

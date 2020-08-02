@@ -1,0 +1,13 @@
+<div class="card mb-4">
+    <div class="card-header">
+        {{ post.title }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">{{ post.preview_text }}</p>
+        <a href="{% url 'post_details_url' slug=post.slug %}" class="btn btn-primary">Читать</a>
+    </div>
+    <div class="card-footer text-muted">
+        {{ post.created }}
+    </div>
+</div>

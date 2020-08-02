@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {{ user.username| title }}, добро пожаловать в мой блог
+{% endblock %}
+
+{% block content %}
+
+    {% for post in posts %}
+        {% include 'blog/card.html' %}
+    {% endfor %}
+
+{% endblock %}
+
