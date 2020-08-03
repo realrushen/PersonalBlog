@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+
+{% block title %}Тэги{% endblock %}
+
+{% block content %}
+    {% for tag in tags %}
+
+    <p class="mb-2"><a href="{% url 'tag_posts_page_url' tag.slug %}">{{ tag.name }}</a></p>
+    {% endfor %}
+    
+{% endblock %}
+    

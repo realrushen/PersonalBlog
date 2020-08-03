@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Добро пожаловать в мой блог</title>
     {% block css_styles %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -16,19 +17,21 @@
 {% endblock %}
 
 <div class="container">
-    <h1 class="mb-4">
-    {% block title %}
-         Здесь должен быть заголовок
-    {% endblock %}
+    <h1 class="text-center mb-4">
+        {% block title %}
+            Здесь должен быть заголовок
+        {% endblock %}
     </h1>
     {% block content %}
-       Here is missing text
+        Здесь должен быть контент
+    {% endblock %}
+
+    {% block footer %}
+        {% include 'blog/footer.html' %}
     {% endblock %}
 </div>
 
-{% block footer %}
-    {% include 'blog/footer.html' %}
-{% endblock %}
+
 
 {% block scripts %}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

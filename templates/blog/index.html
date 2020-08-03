@@ -1,7 +1,11 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
+    {% if user.is_authenticated %}
     {{ user.username| title }}, добро пожаловать в мой блог
+        {% else %}
+        Добро пожаловать в мой блог
+    {% endif %}
 {% endblock %}
 
 {% block content %}
