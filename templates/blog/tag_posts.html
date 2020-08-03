@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 
-{% block title %}{{ tag.name }} {% endblock %}
+{% block title %}Все посты с тэгом {{ tag.name }} {% endblock %}
 
 {% block content %}
     {% for post in tag.posts.all %}
