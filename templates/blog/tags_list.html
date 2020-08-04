@@ -6,8 +6,8 @@
 {% block content %}
     {% for tag in tags %}
 
-    <p class="mb-2"><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></p>
+        <p class="mb-2"><a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a></p>
     {% endfor %}
-    
+
 {% endblock %}
     

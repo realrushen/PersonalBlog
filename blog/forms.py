@@ -1,24 +1,49 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from blog.models import Tag
+from blog.models import Tag, Post
 
 
-class TagForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    slug = forms.CharField(max_length=50)
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ['name', 'slug']
 
-    title.widget.attrs.update({'class': 'form-control'})
-    slug.widget.attrs.update({'class': 'form-control'})
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
     def clean_slug(self):
         new_slug = self.cleaned_data['slug'].lower()
         if new_slug == 'create':
             raise ValidationError('Slug can\'t be \"create\"')
+        if Tag.objects.filter(slug__iexact=new_slug).count():
+            raise ValidationError(f'Tag with slug "{new_slug}" already exists. Slug must be unique.')
+        return new_slug
 
 
-    def save(self):
-        new_tag = Tag.objects.create(title=self.cleaned_data['title'],
-                                     slug=self.cleaned_data['slug'],
-                                     )
-        return new_tag
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            'title',
+            'slug',
+            'preview_text',
+            'text',
+            'tags',
+        ]
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            'preview_text': forms.Textarea(attrs={'class': 'form-control'}),
+            'text': forms.Textarea(attrs={'class': 'form-control'}),
+            'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
+        }
+
+    def clean_slug(self):
+        new_slug = self.cleaned_data['slug'].lower()
+        if new_slug == 'create':
+            raise ValidationError('Slug can\'t be \"create\"')
+        return new_slug

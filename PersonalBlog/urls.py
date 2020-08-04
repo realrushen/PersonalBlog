@@ -20,9 +20,12 @@ from blog.views import *
 
 urlpatterns = [
     path('', index, name='index'),
-    path('post/<str:slug>/', PostDetails.as_view(), name='post_details_url'),
-    path('tags/', tags_list, name='tag_list_url'),
+    path('posts/create/', PostCreate.as_view(), name='post_create_url'),
+    path('posts/<str:slug>/', PostDetails.as_view(), name='post_details_url'),
+
     path('tags/create/', TagCreate.as_view(), name='tag_create_url'),
+    path('tags/', tags_list, name='tag_list_url'),
     path('tags/<str:slug>/', TagPosts.as_view(), name='tag_posts_page_url'),
+
     path('admin/', admin.site.urls),
 ]
