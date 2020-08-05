@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Удаление тэга "<a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>"
+{% endblock %}
+
+{% block content %}
+    <h3 class="mb-4">Вы действительно хотите удалить тэг?</h3>
+    <form action="{{ post.get_delete_url }}" method="post">
+        {% csrf_token %}
+        <button type="submit" name="button" class="btn btn-success">Да</button>
+        <a href="{{tag.get_absolute_url}}">Нет</a>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Удаление поста "<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>"
+{% endblock %}
+
+{% block content %}
+    <h3 class="mb-4">Вы действительно хотите удалить пост?</h3>
+    <form action="{{ post.get_delete_url }}" method="post">
+        {% csrf_token %}
+        <button type="submit" name="button" class="btn btn-success">Да</button>
+        <a href="{{post.get_absolute_url}}">Нет</a>
+    </form>
+
+{% endblock %}

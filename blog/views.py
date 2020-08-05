@@ -3,7 +3,7 @@ from django.views.generic import View
 
 from .forms import TagForm, PostForm
 from .models import Post, Tag
-from .utils import ObjectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin
+from .utils import ObjectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin, ObjectDeleteMixin
 
 
 class PostDetails(ObjectDetailMixin, View):
@@ -14,6 +14,12 @@ class PostDetails(ObjectDetailMixin, View):
 class PostCreate(ObjectCreateMixin, View):
     model_form = PostForm
     template = 'blog/post_create.html'
+
+
+class PostDelete(ObjectDeleteMixin, View):
+    model = Post
+    template = 'blog/post_delete_form.html'
+    redirect_url = 'index'
 
 
 class PostUpdate(ObjectUpdateMixin, View):
@@ -36,6 +42,12 @@ class TagUpdate(ObjectUpdateMixin, View):
     model = Tag
     model_form = TagForm
     template = 'blog/tag_update_form.html'
+
+
+class TagDelete(ObjectDeleteMixin, View):
+    model = Tag
+    template = 'blog/tag_delete_form.html'
+    redirect_url = 'tag_list_url'
 
 
 def tags_list(request):
