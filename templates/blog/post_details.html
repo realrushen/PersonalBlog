@@ -1,10 +1,18 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-    <h1>{{ post.title }}</h1>
+    {{ post.title }}
+
 {% endblock %}
-
 {% block content %}
-    <p>{{ post.text }}</p>
-
+    <div class="row">
+        <div class="col-6">Дата публикации: {{ post.created }}</div>
+        <div class="col-6 text-right">
+            {% for tag in post.tags.all %}
+                <a href="{{ tag.get_absolute_url }}"
+                   class="badge badge-primary d-inline">#{{ tag.name|lower }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <p class="mt-4">{{ post.text }}</p>
 {% endblock %}

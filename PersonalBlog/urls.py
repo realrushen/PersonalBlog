@@ -21,6 +21,7 @@ from blog.views import *
 urlpatterns = [
     path('', index, name='index'),
     path('posts/create/', PostCreate.as_view(), name='post_create_url'),
+    path('posts/<str:slug>/update/', PostUpdate.as_view(), name='post_update_url'),
     path('posts/<str:slug>/', PostDetails.as_view(), name='post_details_url'),
 
     path('tags/create/', TagCreate.as_view(), name='tag_create_url'),
