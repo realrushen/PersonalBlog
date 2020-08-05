@@ -25,6 +25,7 @@ urlpatterns = [
 
     path('tags/create/', TagCreate.as_view(), name='tag_create_url'),
     path('tags/', tags_list, name='tag_list_url'),
+    path('tags/<str:slug>/update/', TagUpdate.as_view(), name='tag_update_url'),
     path('tags/<str:slug>/', TagPosts.as_view(), name='tag_posts_page_url'),
 
     path('admin/', admin.site.urls),

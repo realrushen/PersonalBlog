@@ -32,6 +32,7 @@ class PostForm(forms.ModelForm):
             'preview_text',
             'text',
             'tags',
+            'author',
         ]
 
         widgets = {
@@ -40,6 +41,7 @@ class PostForm(forms.ModelForm):
             'preview_text': forms.Textarea(attrs={'class': 'form-control'}),
             'text': forms.Textarea(attrs={'class': 'form-control'}),
             'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'author': forms.Select(attrs={'class': 'form-control'}),
         }
 
     def clean_slug(self):
