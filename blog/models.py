@@ -28,7 +28,6 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -44,7 +43,6 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-    views = models.PositiveIntegerField()
 
     def get_absolute_url(self):
         return reverse('post_details_url', kwargs={'slug': self.slug})
