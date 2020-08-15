@@ -1,3 +1,4 @@
+from datetime import datetime
 from time import time
 
 from django.contrib.auth.models import User
@@ -28,6 +29,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -43,6 +45,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    views = models.PositiveIntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse('post_details_url', kwargs={'slug': self.slug})
@@ -62,4 +65,6 @@ class Post(models.Model):
         return self.slug
 
     class Meta:
-        ordering = ('-published',)
+        ordering = ('-views',)
+
+

@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
     <div class="row">
-        <div class="col-6">Дата публикации: {{ post.created }}</div>
+        <div class="col-6">Дата публикации: {{ post.created }} Просмотров: {{ post.views }}</div>
         <div class="col-6 text-right">
             {% for tag in post.tags.all %}
                 <a href="{{ tag.get_absolute_url }}"

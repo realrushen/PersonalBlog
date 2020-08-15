@@ -9,6 +9,7 @@ from .utils import ObjectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin, Obje
 class PostDetails(ObjectDetailMixin, View):
     model = Post
     template = 'blog/post_details.html'
+    count_views = True
 
 
 class PostCreate(ObjectCreateMixin, View):
