@@ -36,3 +36,23 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+/*  Admin panel CSS */
+
+.admin-panel {
+  border: 1px solid #999;
+  border-radius: 10px;
+  position: fixed;
+  right: 50px;
+  bottom: 80px;
+  opacity: 0.3;
+  padding: 15px;
+}
+.admin-panel:hover{
+  opacity: 1;
+}
+.admin-panel a {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}

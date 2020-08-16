@@ -28,11 +28,30 @@
         Здесь должен быть контент
     {% endblock %}
 </div>
+{% if request.user.is_authenticated and request.user.is_staff %}
 
-
+<div class="admin-panel align-items-center">
+<a href="/admin/" class="btn btn-primary">Админка</a>
+{% block admin-panel %}
+<div class="btn-group">
+<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Создать
+</button>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="{% url 'post_create_url' %}">Пост</a>
+<a class="dropdown-item" href="{% url 'tag_create_url' %}">Таг</a>
+</div>
+</div>
+{% if detail_view %}
+    <a href="{{ admin_panel_object.get_update_url }}" class="btn btn-info">Изменить</a>
+    <a href="{{ admin_panel_object.get_delete_url }}" class="btn btn-danger">Удалить</a>
+{% endif %}
+{% endblock %}
+</div>
+{% endif %}
 
 {% block footer %}
-    {% include 'blog/includes/footer.html' %}
+{% include 'blog/includes/footer.html' %}
 {% endblock %}
 
 {% block scripts %}

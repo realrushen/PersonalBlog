@@ -37,7 +37,10 @@ class TagPosts(ObjectDetailMixin, View):
     def get(self, request, slug):
         tag = get_object_or_404(Tag, slug__iexact=slug)
         tag_posts = Post.objects.filter(tags__slug__iexact=slug).prefetch_related('tags').select_related('author')
-        return render(request, template_name=self.template, context={'tag': tag, 'tag_posts': tag_posts})
+        return render(request, template_name=self.template, context={'tag': tag,
+                                                                     'tag_posts': tag_posts,
+                                                                     'admin_panel_object': tag,
+                                                                     'detail_view': True})
 
 
 class TagCreate(ObjectCreateMixin, View):
