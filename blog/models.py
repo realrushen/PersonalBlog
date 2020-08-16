@@ -1,4 +1,3 @@
-from datetime import datetime
 from time import time
 
 from django.contrib.auth.models import User
@@ -66,5 +65,3 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-views',)
-
-

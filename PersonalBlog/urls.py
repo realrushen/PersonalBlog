@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from blog.views import *
+from blog.views import index, PostCreate, PostUpdate, PostDelete, PostDetails, TagCreate, tags_list, TagUpdate, \
+    TagDelete, TagPosts
+from . import settings
 
 urlpatterns = [
     path('', index, name='index'),
@@ -33,3 +35,10 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
