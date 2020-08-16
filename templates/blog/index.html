@@ -13,6 +13,6 @@
     {% for post in posts %}
         {% include 'blog/card.html' %}
     {% endfor %}
-
+{% include 'blog/includes/paginator.html' with page=posts %}
 {% endblock %}
 

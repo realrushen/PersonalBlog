@@ -1,0 +1,30 @@
+{% if is_paginated %}
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item {% if not page.has_previous %}disabled{% endif %}">
+          <span class="page-link">{% if page.has_previous %}
+              <a href="?page={{ page.previous_page_number }}" class="href">Previous</a>
+          {% else %}
+              Previous
+          {% endif %}
+          </span>
+        </li>
+        {% for n in page.paginator.page_range %}
+            {% if page.number == n %}
+                <li class="page-item active"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+            {% elif n > page.number|add:-3 and n < page.number|add:3 %}
+                <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        <li class="page-item {% if not page.has_next %}disabled{% endif %}">
+          <span class="page-link">{% if page.has_next %}
+              <a href="?page={{ page.next_page_number }}" class="href">Next</a>
+          {% else %}
+              Next
+          {% endif %}
+          </span>
+        </li>
+      </ul>
+    </nav>
+{% endif %}
