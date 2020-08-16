@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
 
 from .forms import TagForm, PostForm
@@ -33,6 +33,12 @@ class TagPosts(ObjectDetailMixin, View):
     model = Tag
     template = 'blog/tag_posts.html'
 
+    def get(self, request, slug):
+        tag = get_object_or_404(Tag, slug__iexact=slug)
+        tag_posts = Post.objects.filter(tags__slug__iexact=slug).prefetch_related('tags').select_related('author')
+        return render(request, template_name=self.template, context={'tag': tag, 'tag_posts': tag_posts})
+
+
 
 class TagCreate(ObjectCreateMixin, View):
     model_form = TagForm
@@ -57,5 +63,5 @@ def tags_list(request):
 
 
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().prefetch_related('tags').select_related('author')
     return render(request, 'blog/index.html', context={'posts': posts})

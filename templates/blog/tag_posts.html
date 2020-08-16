@@ -4,7 +4,7 @@
 {% block title %}Все посты с тэгом "{{ tag.name }}" {% endblock %}
 
 {% block content %}
-    {% for post in tag.posts.all %}
+    {% for post in tag_posts %}
         {% include 'blog/card.html' %}
     {% endfor %}
 {% endblock %}

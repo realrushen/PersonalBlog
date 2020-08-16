@@ -42,7 +42,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
-    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    author = models.ForeignKey(User, on_delete=models.PROTECT,)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     views = models.PositiveIntegerField(default=0)
 

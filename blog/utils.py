@@ -1,6 +1,8 @@
-from django.db.models import F
+from django.db.models import F, Prefetch
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+
+from blog.models import Tag, Post
 
 
 class ObjectDetailMixin:
@@ -12,7 +14,6 @@ class ObjectDetailMixin:
         if self.count_views:
             self.model.objects.filter(slug__iexact=slug).update(views=F('views') + 1)
         obj = get_object_or_404(self.model, slug__iexact=slug)
-
         return render(request, self.template, context={self.model.__name__.lower(): obj})
 
 
@@ -26,7 +27,6 @@ class ObjectCreateMixin:
 
     def post(self, request):
         bound_form = self.model_form(request.POST)
-
         if bound_form.is_valid():
             new_obj = bound_form.save()
             return redirect(new_obj)
@@ -47,7 +47,6 @@ class ObjectUpdateMixin:
     def post(self, request, slug):
         obj = get_object_or_404(self.model, slug__iexact=slug)
         bound_form = self.model_form(request.POST, instance=obj)
-
         if bound_form.is_valid():
             updated_obj = bound_form.save()
             return redirect(updated_obj)
