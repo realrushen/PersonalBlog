@@ -34,6 +34,7 @@ urlpatterns = [
     path('tags/<str:slug>/', TagPosts.as_view(), name='tag_posts_page_url'),
 
     path('admin/', admin.site.urls),
+    path('account/', include('account.urls')),
 ]
 
 if settings.DEBUG:

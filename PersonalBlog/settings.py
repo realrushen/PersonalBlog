@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'account',
-    'blog.apps.BlogConfig',
+    'blog',
 
     'debug_toolbar',
 ]
