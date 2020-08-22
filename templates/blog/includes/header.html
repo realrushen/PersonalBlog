@@ -12,7 +12,7 @@
                     <a class="nav-link" href="/">Главная<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{%  url 'tag_list_url' %}">Теги</a>
+                    <a class="nav-link" href="{% url 'tag_list_url' %}">Теги</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -20,5 +20,12 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
             </form>
         </div>
+        {% if user.is_authenticated %}
+            <p class="m-2 my-lg-1"><a href="#">Профиль</a></p>
+            <p class="m-2 my-lg-1"><a href="{% url 'logout' %}">Выход</a></p>
+        {% else %}
+            <p class="m-2 my-lg-1"><a href="{% url 'login' %}">Вход</a></p>
+            <p class="m-2 my-lg-1"><a href="{% url 'login' %}">Регистрация</a></p>
+        {% endif %}
     </nav>
 </header>
