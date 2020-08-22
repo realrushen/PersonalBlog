@@ -19,7 +19,6 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
             </form>
-        </div>
         {% if user.is_authenticated %}
             <p class="m-2 my-lg-1"><a href="#">Профиль</a></p>
             <p class="m-2 my-lg-1"><a href="{% url 'logout' %}">Выход</a></p>
@@ -27,5 +26,7 @@
             <p class="m-2 my-lg-1"><a href="{% url 'login' %}">Вход</a></p>
             <p class="m-2 my-lg-1"><a href="{% url 'login' %}">Регистрация</a></p>
         {% endif %}
+        </div>
+
     </nav>
 </header>

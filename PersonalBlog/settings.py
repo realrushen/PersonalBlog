@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'blog',
 
     'debug_toolbar',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -139,5 +140,11 @@ INTERNAL_IPS = [
 ]
 # Default redirect url if next is not given
 LOGIN_REDIRECT_URL = '/'
+
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
+
+# Default CSS framework for django-crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

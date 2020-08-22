@@ -6,7 +6,7 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 100px;
+  margin-bottom: 90px;
 }
 .footer {
   position: absolute;
@@ -43,8 +43,8 @@ code {
   border: 1px solid #999;
   border-radius: 10px;
   position: fixed;
-  right: 50px;
-  bottom: 80px;
+  right: 2rem;
+  bottom: 4rem;
   opacity: 0.3;
   padding: 15px;
 }
@@ -55,4 +55,13 @@ code {
   display: block;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.pagination {
+  margin-bottom: 1rem;
+  display: inline-flex;
 }
