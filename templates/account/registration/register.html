@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <div class="col-4">
+    <p>Пожалуйста зарегистрируйтесь используя форму ниже:</p>
+        <form action="." method="post">
+            {{ user_form|crispy }}
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+{% endblock %}
