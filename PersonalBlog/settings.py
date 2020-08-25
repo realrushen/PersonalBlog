@@ -147,4 +147,8 @@ LOGOUT_URL = reverse_lazy('logout')
 # Default CSS framework for django-crispy-forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# Makes "django_mailer" sent mails to console instead thought smtp server
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
