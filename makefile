@@ -8,3 +8,5 @@ makemigrations:
 migrate:
 	envdir envs/ python manage.py migrate
 
+shell:
+	envdir envs/ python manage.py shell

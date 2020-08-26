@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
+    <h3 class="text-center mb-4">Вы можете изменить данные профиля используя форму ниже:</h3>
+    <div class="col-4">
+
+        <form action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ user_form|crispy }}
+            {{ profile_form | crispy }}
+            <button type="submit" class="btn btn-primary">Изменить</button>
+        </form>
+    </div>
+{% endblock %}

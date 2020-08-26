@@ -19,6 +19,19 @@
 {% endblock %}
 
 <div class="container">
+    {% block massages %}
+        {% if messages %}
+            <div class="alert alert-success" id="msg" role="alert">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                        {{ message|safe }}
+                        <a href="#" class="close">✖</a>
+                    </li>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
     <h1 class="text-center mb-4">
         {% block title %}
             Здесь должен быть заголовок
@@ -66,6 +79,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
 </body>
 </html>

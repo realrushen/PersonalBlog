@@ -2,8 +2,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, re_path
 
 from .forms import LoginForm
-from .views import RegisterView
-
+from .views import RegisterView, UserProfileView
 
 urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='account/registration/login.html',
@@ -27,4 +26,5 @@ urlpatterns = [
          name='password_reset_complete'),
 
     path('register/', RegisterView.as_view(), name='register'),
+    path('profile/', UserProfileView.as_view(), name='user_profile'),
 ]
