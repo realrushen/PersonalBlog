@@ -21,7 +21,7 @@
 <div class="container">
     {% block massages %}
         {% if messages %}
-            <div class="alert alert-success" id="msg" role="alert">
+            <div class="alert alert-success shadow" id="msg" role="alert">
                 {% for message in messages %}
                     <li class="{{ message.tags }}">
                         {{ message|safe }}
@@ -44,7 +44,7 @@
 </div>
 {% if request.user.is_authenticated and request.user.is_staff %}
 
-    <div class="admin-panel align-items-center">
+    <div class="admin-panel align-items-center shadow">
         <a href="/admin/" class="btn btn-primary">Админка</a>
         {% block admin-panel %}
             <div class="btn-group">
