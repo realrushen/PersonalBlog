@@ -65,3 +65,12 @@ p {
   margin-bottom: 1rem;
   display: inline-flex;
 }
+
+.reply {
+  cursor:pointer;
+  color:blue;
+}
+.reply:hover {
+  color: dodgerblue;
+  text-decoration:underline;
+}

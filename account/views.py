@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.shortcuts import render
 from django.views import View
 
 from .forms import UserRegistrationForm, UserProfileEditForm, UserEditForm
@@ -29,14 +28,16 @@ class RegisterView(View):
 
 class UserProfileView(LoginRequiredMixin, View):
     def get(self, request):
-        user_form = UserEditForm(instance=request.user, )
+        user_form = UserEditForm(instance=request.user)
         profile_form = UserProfileEditForm(instance=request.user.profile)
+        avatar_url = request.user.profile.avatar
         return render(request, template_name='account/user_profile.html',
-                      context={'user_form': user_form, 'profile_form': profile_form})
+                      context={'user_form': user_form, 'profile_form': profile_form,
+                      'avatar_url': avatar_url})
 
     def post(self, request):
         user_form = UserEditForm(instance=request.user, data=request.POST)
-        profile_form = UserProfileEditForm(instance=request.user.profile, data=request.POST)
+        profile_form = UserProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
@@ -45,6 +46,3 @@ class UserProfileView(LoginRequiredMixin, View):
             messages.error(request, 'Ошибка при изменении профиля')
         return render(request, template_name='account/user_profile.html',
                       context={'user_form': user_form, 'profile_form': profile_form})
-
-
-

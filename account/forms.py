@@ -46,3 +46,10 @@ class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('birth_date', 'avatar')
+        help_texts = {
+            'avatar': ('500х500')
+        }
+        labels = {
+            'birth_date': ('Дата рождения'),
+            'avatar': ('Аватар'),
+        }

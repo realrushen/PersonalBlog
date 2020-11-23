@@ -49,3 +49,16 @@ class PostForm(forms.ModelForm):
         if new_slug == 'create':
             raise ValidationError('Slug can\'t be \"create\"')
         return new_slug
+
+
+class PostCommentForm(forms.Form):
+    parent_comment = forms.IntegerField(
+        widget=forms.HiddenInput,
+        required=False
+    )
+
+    comment_area = forms.CharField(
+        label="",
+        widget=forms.Textarea
+    )
+

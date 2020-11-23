@@ -1,22 +1,5 @@
-from django.db.models import F, Prefetch
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-
-from blog.models import Tag, Post
-
-
-class ObjectDetailMixin:
-    model = None
-    template = None
-    count_views = False
-
-    def get(self, request, slug):
-        if self.count_views:
-            self.model.objects.filter(slug__iexact=slug).update(views=F('views') + 1)
-        obj = get_object_or_404(self.model, slug__iexact=slug)
-        return render(request, self.template, context={self.model.__name__.lower(): obj,
-                                                       'admin_panel_object': obj,
-                                                       'detail_view': True})
 
 
 class ObjectCreateMixin:

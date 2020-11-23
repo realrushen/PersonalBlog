@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from blog.views import index, PostCreate, PostUpdate, PostDelete, PostDetails, TagCreate, tags_list, TagUpdate, \
-    TagDelete, TagPosts
+    TagDelete, TagPosts, PostAddComment
 from . import settings
 
 urlpatterns = [
@@ -27,6 +27,7 @@ urlpatterns = [
     path('posts/<str:slug>/update/', PostUpdate.as_view(), name='post_update_url'),
     path('posts/<str:slug>/delete/', PostDelete.as_view(), name='post_delete_url'),
     path('posts/<str:slug>/', PostDetails.as_view(), name='post_details_url'),
+    path('posts/<str:slug>/add_comment/', PostAddComment.as_view(), name='post_add_comment'),
 
     path('tags/create/', TagCreate.as_view(), name='tag_create_url'),
     path('tags/', tags_list, name='tag_list_url'),

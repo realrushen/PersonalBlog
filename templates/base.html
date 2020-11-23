@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     {% endblock %}
 </head>
-<body>
 
+<body>
 {% block header %}
     {% include 'blog/includes/header.html' %}
 {% endblock %}
@@ -21,13 +21,13 @@
 <div class="container">
     {% block massages %}
         {% if messages %}
-            <div class="alert alert-success shadow" id="msg" role="alert">
+            <div class="alert alert-success shadow alert-dismissible fade show" role="alert">
                 {% for message in messages %}
-                    <li class="{{ message.tags }}">
-                        {{ message|safe }}
-                        <a href="#" class="close">✖</a>
-                    </li>
+                    <a class="{{ message.tags }}">{{ message|safe }}</a>
                 {% endfor %}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         {% endif %}
     {% endblock %}
@@ -37,7 +37,6 @@
             Здесь должен быть заголовок
         {% endblock %}
     </h1>
-    <hr class="my-5">
     {% block content %}
         Здесь должен быть контент
     {% endblock %}

@@ -42,7 +42,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
-    author = models.ForeignKey(User, on_delete=models.PROTECT,)
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     views = models.PositiveIntegerField(default=0)
 
@@ -65,3 +65,14 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-views',)
+
+
+class PostComment(models.Model):
+    author_id = models.ForeignKey(User, on_delete=models.PROTECT, related_name='all_comments')
+    post_slug = models.ForeignKey(Post, to_field='slug', on_delete=models.CASCADE, related_name='comments')
+    text = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    parent_id = models.ForeignKey('PostComment', blank=True, null=True, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f'id: {self.id} post_slug: {self.post_slug} | text: {self.text[:20]} | reply_to: {self.parent_id_id}'
