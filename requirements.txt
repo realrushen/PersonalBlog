@@ -1,5 +1,5 @@
 asgiref==3.2.10
-Django==3.1.13
+Django==3.2.24
 django-crispy-forms==1.9.2
 django-debug-toolbar==2.2.1
 envdir==1.0.1
